@@ -1,0 +1,22 @@
+.Todo {
+  display: flex;
+  justify-content: center;
+  padding-top: 100px;
+  flex-grow: 1;
+  width: 100%;
+  background: linear-gradient(90deg, #5041b2 0%, #7969e6);
+  font-family: Arial;
+}
+
+.Todo h1 {
+  color: #fff;
+  margin-left: 10px;
+}
+
+.TodoWrapper {
+  width: 90%;
+  display: flex;
+  align-items: flex-start;
+  margin: 0 auto;
+  justify-content: center;
+}

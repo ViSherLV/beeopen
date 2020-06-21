@@ -1,0 +1,23 @@
+.PlanningTask {
+  padding: 20px;
+  border: 2px solid #fff;
+  border-radius: 15px;
+  margin: 0 10px;
+  box-sizing: border-box;
+  width: 500px;
+  height: 80%;
+}
+.PlanningTask h2 {
+  color: white;
+  margin-left: 5px;
+}
+.PlanningTask h5 {
+  color: red;
+}
+.PlanningHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 60px;
+  margin-bottom: 15px;
+}

@@ -1,0 +1,19 @@
+.Task {
+  width: 100%;
+  min-height: 150px;
+  background-color: white;
+  display: flex;
+  border-radius: 15px;
+  padding: 2px;
+  margin-bottom: 10px;
+}
+.TaskRight,
+.TaskLeft {
+  width: 100%;
+}
+.TaskLeft {
+  width: 190%;
+}
+.Task button {
+  display: block; /* Make the buttons appear below each other */
+}
