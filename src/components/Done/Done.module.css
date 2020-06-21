@@ -1,6 +1,6 @@
 .DoneTask {
   padding: 20px;
-  color: greenyellow;
+  color: black;
   border: 2px solid #fff;
   border-radius: 5px;
   margin: 0 10px;
@@ -14,4 +14,12 @@
   flex-direction: row;
   justify-content: space-between;
   height: 60px;
+  margin-bottom: 17px;
+}
+.DoneTask h2 {
+  color: white;
+  margin-left: 5px;
+}
+.DoneTask h5 {
+  color: red;
 }

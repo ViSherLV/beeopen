@@ -5,7 +5,10 @@ import Button from '../../elements/button/button'
 import { connect } from 'react-redux'
 
 function PlanningTask(props) {
-    console.log(`props1${JSON.stringify(props)}`)
+    console.log(props)
+    function test(a) {
+        console.log("ss")
+    }
     return (
         <div className={classes.PlanningTask}>
             <div className={classes.PlanningHeader}>
@@ -14,9 +17,11 @@ function PlanningTask(props) {
             </div>
             {
                 props.tasks.map((task, index) => {
-                    return (
-                        <Task task={task.task} review={task.review} key={index} />
-                    )
+                    if (task.status == false) {
+                        return (
+                            <Task task={task.task} review={task.review} key={index} id={index} func={task.func} />
+                        )
+                    }
                 })
             }
         </div>
@@ -28,5 +33,12 @@ function mapStateToProps(state) {
         tasks: state.tasks
     }
 }
+function mapDispatchToProps(dispatch) {
+    return {
+        onAdd: () => dispatch({ type: 'ADD' }),
+        onSub: () => dispatch({ type: 'SUB' })
 
-export default connect(mapStateToProps)(PlanningTask)
+    }
+
+}
+export default connect(mapStateToProps, mapDispatchToProps)(PlanningTask)

@@ -4,18 +4,6 @@ import classes from "./Todo.module.css"
 import PlanningTask from '../../components/Planing/PlanningTask'
 import Done from '../../components/Done/Done';
 class Todo extends Component {
-    state = {
-        tasks: [
-            {
-                task: "16:00 BeeOpen status call",
-                review: "В процесі status call команда BeeOpen обговорює усі аспекти роботи над проектом з Майком",
-                status: false
-            }, {
-                task: "11:00 BeeOpen Grooming call",
-                review: "В процесі Grooming call команда BeeOpen обговорює усі аспекти роботи над проектом між собою",
-                status: false
-            }]
-    }
     render() {
         console.log(`props ${JSON.stringify(this.props)}`)
         return (
@@ -34,5 +22,10 @@ function mapStateToProps(state) {
         counter: state.counter
     }
 }
+function mapDispatchToProps(dispatch) {
+    return {
+        onAdd: () => dispatch({ type: 'ADD' })
+    }
+}
 
-export default connect(mapStateToProps)(Todo)
+export default connect(mapStateToProps, mapDispatchToProps)(Todo)
