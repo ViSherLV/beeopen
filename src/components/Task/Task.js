@@ -2,6 +2,7 @@ import React from 'react';
 import classes from './Task.module.css'
 import Button from './../../elements/button/button'
 import { connect } from 'react-redux'
+import { doneTask, openChangeModal } from '../../redux/actions/actions'
 
 function Task(props) {
     return (
@@ -24,8 +25,8 @@ function mapStateToProps(state) {
 }
 function mapDispatchToProps(dispatch) {
     return {
-        onDone: (variable) => dispatch({ type: 'DONE', status: "done", id: variable }),
-        opendModal: (variable) => dispatch({ type: 'OPENMODAL', task: variable }),
+        onDone: (id) => dispatch(doneTask(id)),
+        opendModal: (task) => dispatch(openChangeModal(task)),
 
     }
 

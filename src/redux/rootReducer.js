@@ -1,8 +1,9 @@
+import { DONE, ONCHANGETASK, ONCHANGEREVIEW, ONSAVE, CREATE, CANCEL, OPENMODAL, OPENCREATEMODAL } from './actions/actionTypes'
 const initialState = {
     tasks: [
         {
             task: "16:00 BeeOpen status call",
-            review: "В процесі status call команда BeeOpen обговорює усі аспекти роботи над проектом з Майком",
+            review: "В процесі status call команда BeeOpen обговорює усі аспекти роботи над проектом з Michael",
             status: false,
         }, {
             task: "11:00 BeeOpen Grooming call",
@@ -23,7 +24,7 @@ export default function rootReducer(state = initialState, action) {
 
     switch (action.type) {
 
-        case 'DONE':
+        case DONE:
             return {
                 ...state,
                 tasks: state.tasks.map(
@@ -31,7 +32,7 @@ export default function rootReducer(state = initialState, action) {
                         ...element, status: true
                     } : element)
             }
-        case 'ONCHANGETASK':
+        case ONCHANGETASK:
             return {
                 ...state, ModalContent: {
                     task: action.target,
@@ -43,7 +44,7 @@ export default function rootReducer(state = initialState, action) {
 
                 }
             }
-        case 'ONCHANGEREVIEW':
+        case ONCHANGEREVIEW:
             return {
                 ...state, ModalContent: {
                     task: state.ModalContent.task,
@@ -54,7 +55,7 @@ export default function rootReducer(state = initialState, action) {
 
                 }
             }
-        case "ONSAVE":
+        case ONSAVE:
             if (!state.ModalContent.task) {
                 return {
                     ...state, ModalContent: {
@@ -74,16 +75,16 @@ export default function rootReducer(state = initialState, action) {
                     }
                 }
             }
-        case "CREATE":
-            const newTasks = state.tasks.slice();
-            const a = {
+        case CREATE:
+            const copyOfTasks = state.tasks.slice();
+            const newTask = {
 
                 task: state.ModalContent.task,
                 review: state.ModalContent.review,
                 status: false
 
             }
-            newTasks.push(a)
+            copyOfTasks.push(newTask)
             let newState
 
             if (!state.ModalContent.task) {
@@ -95,20 +96,20 @@ export default function rootReducer(state = initialState, action) {
                 return newState
             } else {
                 newState = {
-                    ...state, tasks: newTasks, ModalContent: {
+                    ...state, tasks: copyOfTasks, ModalContent: {
                         isOpenCreate: false
                     }
                 }
                 return newState
             }
-        case "CANCEL":
+        case CANCEL:
             return {
                 ...state,
                 ModalContent: {
                     isOpenCreate: false
                 }
             }
-        case "OPENMODAL":
+        case OPENMODAL:
             return {
                 ...state,
                 ModalContent: {
@@ -118,7 +119,7 @@ export default function rootReducer(state = initialState, action) {
                     isOpenEdit: true
                 }
             }
-        case "OPENCREATEMODAL":
+        case OPENCREATEMODAL:
             return {
                 ...state,
                 ModalContent: {

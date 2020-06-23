@@ -3,6 +3,7 @@ import classes from './PlanningTask.module.css';
 import Task from '../Task/Task';
 import Button from '../../elements/button/button'
 import { connect } from 'react-redux'
+import { openCreateModal } from '../../redux/actions/actions';
 
 function PlanningTask(props) {
     return (
@@ -32,7 +33,7 @@ function mapStateToProps(state) {
 }
 function mapDispatchToProps(dispatch) {
     return {
-        OPENMODAL: () => dispatch({ type: 'OPENCREATEMODAL' })
+        OPENMODAL: () => dispatch(openCreateModal())
 
     }
 

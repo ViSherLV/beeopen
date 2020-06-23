@@ -2,6 +2,7 @@ import React from 'react';
 import classes from './Modal.module.css';
 import Button from '../../elements/button/button'
 import { connect } from 'react-redux';
+import { chageTask, changeReview, saveTask } from '../../redux/actions/actions'
 
 function Modal(props) {
     return (
@@ -29,9 +30,9 @@ function mapStateToProps(state) {
 }
 function mapDispatchToProps(dispatch) {
     return {
-        onChageTask: (variable) => dispatch({ type: 'ONCHANGETASK', target: variable }),
-        onChageReview: (variable) => dispatch({ type: 'ONCHANGEREVIEW', target: variable }),
-        onSave: (variable) => dispatch({ type: 'ONSAVE', id: variable }),
+        onChageTask: (e) => dispatch(chageTask(e)),
+        onChageReview: (e) => dispatch(changeReview(e)),
+        onSave: (id) => dispatch(saveTask(id)),
 
     }
 

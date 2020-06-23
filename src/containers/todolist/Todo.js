@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import classes from "./Todo.module.css"
-import PlanningTask from '../../components/Planing/PlanningTask'
+import PlanningTask from '../../components/Planning/PlanningTask'
 import Done from '../../components/Done/Done';
 import Modal from '../../components/Modal/Modal';
 import Createtask from '../../components/CreateTask/Createtask'
