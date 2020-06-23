@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import classes from "./Todo.module.css"
 import PlanningTask from '../../components/Planing/PlanningTask'
 import Done from '../../components/Done/Done';
-import Popup from '../../components/popup/popup';
+import Modal from '../../components/Modal/Modal';
 import Createtask from '../../components/CreateTask/Createtask'
 class Todo extends Component {
     render() {
@@ -11,9 +11,8 @@ class Todo extends Component {
         return (
             <div className={classes.Todo}>
                 <div className={classes.TodoWrapper}>
-                    {this.props.state.popupContent.isOpenEdit ? <Popup /> : null}
-                    {this.props.state.popupContent.isOpenCreate ? <Createtask /> : null}
-
+                    {this.props.state.ModalContent.isOpenEdit ? <Modal /> : null}
+                    {this.props.state.ModalContent.isOpenCreate ? <Createtask /> : null}
                     <PlanningTask />
                     <Done />
                 </div>
@@ -27,10 +26,6 @@ function mapStateToProps(state) {
         state
     }
 }
-function mapDispatchToProps(dispatch) {
-    return {
-        onAdd: () => dispatch({ type: 'ADD' })
-    }
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(Todo)
+
+export default connect(mapStateToProps)(Todo)

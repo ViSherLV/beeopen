@@ -4,10 +4,6 @@ import Button from './../../elements/button/button'
 import { connect } from 'react-redux'
 
 function Task(props) {
-    console.log(`aasa ${JSON.stringify(props)}`)
-    function test() {
-        console.log(props.id)
-    }
     return (
         <div className={classes.Task}>
             <div className={classes.TaskLeft}>
@@ -15,8 +11,8 @@ function Task(props) {
                 <p>{props.review}</p>
             </div>
             <div className={classes.TaskRight}>
-                <Button func={() => props.openModal(props.id)} >Редагувати</Button>
-                <Button id={props.index} number={props.id} func={() => props.onDone(props.id)}>Виконано</Button>
+                {!props.tasks[props.id].status ? <Button func={() => props.opendModal(props.id)} >Редагувати</Button> : null}
+                {!props.tasks[props.id].status ? <Button id={props.index} number={props.id} func={() => props.onDone(props.id)}>Виконано</Button> : null}
             </div>
         </div>
     )
@@ -28,9 +24,8 @@ function mapStateToProps(state) {
 }
 function mapDispatchToProps(dispatch) {
     return {
-        onDone: (a) => dispatch({ type: 'DONE', status: "done", id: a }),
-        onEdit: (a) => dispatch({ type: 'EDIT', popup: true }),
-        openModal: (a) => dispatch({ type: 'OPENPOPUP', task: a }),
+        onDone: (variable) => dispatch({ type: 'DONE', status: "done", id: variable }),
+        opendModal: (variable) => dispatch({ type: 'OPENMODAL', task: variable }),
 
     }
 

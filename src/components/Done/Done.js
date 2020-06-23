@@ -1,6 +1,5 @@
 import React from 'react';
 import classes from './Done.module.css';
-import Button from '../../elements/button/button'
 import Task from '../Task/Task';
 import { connect } from 'react-redux'
 
@@ -11,11 +10,12 @@ const DoneTask = props => (
         </div>
         {
             props.tasks.map((task, index) => {
-                if (task.status == true) {
+                if (task.status === true) {
                     return (
                         <Task task={task.task} review={task.review} key={index} id={index} func={task.func} />
                     )
                 }
+                return null;
             })
         }
     </div>

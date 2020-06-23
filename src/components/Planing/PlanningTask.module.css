@@ -1,5 +1,6 @@
 .PlanningTask {
   padding: 20px;
+  background: rgba(58, 172, 172, 0.5);
   border: 2px solid #fff;
   border-radius: 15px;
   margin: 0 10px;

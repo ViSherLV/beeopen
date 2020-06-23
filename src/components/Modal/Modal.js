@@ -1,21 +1,22 @@
 import React from 'react';
-import classes from './Createtask.module.css';
+import classes from './Modal.module.css';
 import Button from '../../elements/button/button'
 import { connect } from 'react-redux';
 
-function Createtask(props) {
+function Modal(props) {
     return (
+
         <div className={classes.Modal}>
+            <div className={classes.background}></div>
             <div className={classes.top}>
-                <p>Назва таску</p>
+                <p>Відредагувати назву таску</p>
                 <textarea value={props.tasks.task} onChange={(variable) => props.onChageTask(variable.target.value)}></textarea>
             </div>
             <div>
-                <p>Опис таску</p>
+                <p>Відредагувати опис таску</p>
                 <textarea value={props.tasks.review} onChange={(variable) => props.onChageReview(variable.target.value)}></textarea>
             </div>
-            <Button className={classes.Button} func={() => props.onCreate(props.tasks.taskid)}>Додати таск</Button>
-            <Button className={classes.Button} func={() => props.onCancel(props.tasks.taskid)}>Відміна</Button>
+            <Button className={classes.Button} func={(variable) => props.onSave(props.tasks.taskid)}>Зберегти зміни</Button>
         </div>
     )
 
@@ -30,10 +31,9 @@ function mapDispatchToProps(dispatch) {
     return {
         onChageTask: (variable) => dispatch({ type: 'ONCHANGETASK', target: variable }),
         onChageReview: (variable) => dispatch({ type: 'ONCHANGEREVIEW', target: variable }),
-        onCreate: () => dispatch({ type: 'CREATE' }),
-        onCancel: () => dispatch({ type: 'CANCEL' }),
+        onSave: (variable) => dispatch({ type: 'ONSAVE', id: variable }),
 
     }
 
 }
-export default connect(mapStateToProps, mapDispatchToProps)(Createtask)
+export default connect(mapStateToProps, mapDispatchToProps)(Modal)

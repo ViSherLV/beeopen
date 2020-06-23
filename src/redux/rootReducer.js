@@ -1,5 +1,3 @@
-import { act } from "react-dom/test-utils"
-
 const initialState = {
     tasks: [
         {
@@ -11,7 +9,7 @@ const initialState = {
             review: "В процесі Grooming call команда BeeOpen обговорює усі аспекти роботи над проектом між собою",
             status: false
         }],
-    popupContent: {
+    ModalContent: {
         task: "",
         review: "",
         taskid: null,
@@ -26,7 +24,6 @@ export default function rootReducer(state = initialState, action) {
     switch (action.type) {
 
         case 'DONE':
-            console.log(action)
             return {
                 ...state,
                 tasks: state.tasks.map(
@@ -34,108 +31,97 @@ export default function rootReducer(state = initialState, action) {
                         ...element, status: true
                     } : element)
             }
-            break;
         case 'ONCHANGETASK':
-            console.log(action)
             return {
-                ...state, popupContent: {
+                ...state, ModalContent: {
                     task: action.target,
-                    review: state.popupContent.review,
-                    isOpenEdit: state.popupContent.isOpenEdit,
-                    isOpenCreate: state.popupContent.isOpenCreate,
-                    taskid: state.popupContent.taskid,
+                    review: state.ModalContent.review,
+                    isOpenEdit: state.ModalContent.isOpenEdit,
+                    isOpenCreate: state.ModalContent.isOpenCreate,
+                    taskid: state.ModalContent.taskid,
 
 
                 }
             }
-            break;
         case 'ONCHANGEREVIEW':
-            console.log(action)
             return {
-                ...state, popupContent: {
-                    task: state.popupContent.task,
+                ...state, ModalContent: {
+                    task: state.ModalContent.task,
                     review: action.target,
-                    isOpenEdit: state.popupContent.isOpenEdit,
-                    isOpenCreate: state.popupContent.isOpenCreate,
-                    taskid: state.popupContent.taskid,
+                    isOpenEdit: state.ModalContent.isOpenEdit,
+                    isOpenCreate: state.ModalContent.isOpenCreate,
+                    taskid: state.ModalContent.taskid,
 
                 }
             }
-            break;
         case "ONSAVE":
-            console.log(`sss ${JSON.stringify(action)}`)
-            let saveState;
-            if (!state.popupContent.task) {
+            if (!state.ModalContent.task) {
                 return {
-                    ...state, popupContent: {
+                    ...state, ModalContent: {
                         isOpenEdit: false
                     }
                 }
 
             } else {
-
-
                 return {
                     ...state,
                     tasks: state.tasks.map(
                         (element, i) => i === action.id ? {
-                            ...element, task: state.popupContent.task, review: state.popupContent.review
+                            ...element, task: state.ModalContent.task, review: state.ModalContent.review
                         } : element),
-                    popupContent: {
+                    ModalContent: {
                         isOpenEdit: false
                     }
                 }
             }
-            break;
         case "CREATE":
-            console.log(`sss ${JSON.stringify(action)}`)
             const newTasks = state.tasks.slice();
             const a = {
 
-                task: state.popupContent.task,
-                review: state.popupContent.review,
+                task: state.ModalContent.task,
+                review: state.ModalContent.review,
                 status: false
 
             }
             newTasks.push(a)
             let newState
-            console.log(`a is ${newTasks}`)
 
-            if (!state.popupContent.task) {
-                console.log('err')
+            if (!state.ModalContent.task) {
                 newState = {
-                    ...state, popupContent: {
+                    ...state, ModalContent: {
                         isOpenCreate: false
                     }
                 }
                 return newState
             } else {
-                console.log('true')
                 newState = {
-                    ...state, tasks: newTasks, popupContent: {
+                    ...state, tasks: newTasks, ModalContent: {
                         isOpenCreate: false
                     }
                 }
                 return newState
             }
-
-            break;
-        case "OPENPOPUP":
-            console.log(`action ${action}`)
+        case "CANCEL":
             return {
                 ...state,
-                popupContent: {
+                ModalContent: {
+                    isOpenCreate: false
+                }
+            }
+        case "OPENMODAL":
+            return {
+                ...state,
+                ModalContent: {
                     task: state.tasks[action.task].task,
                     review: state.tasks[action.task].review,
                     taskid: action.task,
                     isOpenEdit: true
                 }
             }
-        case "OPENCREATEPOPUP":
-            console.log(`action ${action}`)
+        case "OPENCREATEMODAL":
             return {
                 ...state,
-                popupContent: {
+                ModalContent: {
                     isOpenCreate: true
                 }
             }
@@ -143,5 +129,5 @@ export default function rootReducer(state = initialState, action) {
         default:
             return state
     }
-    return state
+
 }

@@ -5,23 +5,20 @@ import Button from '../../elements/button/button'
 import { connect } from 'react-redux'
 
 function PlanningTask(props) {
-    console.log(props)
-    function test(a) {
-        console.log("ss")
-    }
     return (
         <div className={classes.PlanningTask}>
             <div className={classes.PlanningHeader}>
                 <h2>Список задач</h2>
-                <Button func={() => props.openModal()}>Додати завдання</Button>
+                <Button func={() => props.OPENMODAL()}>Додати завдання</Button>
             </div>
             {
                 props.tasks.map((task, index) => {
-                    if (task.status == false) {
+                    if (task.status === false) {
                         return (
                             <Task task={task.task} review={task.review} key={index} id={index} func={task.func} />
                         )
                     }
+                    return null;
                 })
             }
         </div>
@@ -35,10 +32,7 @@ function mapStateToProps(state) {
 }
 function mapDispatchToProps(dispatch) {
     return {
-        onAdd: () => dispatch({ type: 'ADD' }),
-        onSub: () => dispatch({ type: 'SUB' }),
-        createTask: (a) => dispatch({ type: 'CREATE_TASK', status: "done", id: a }),
-        openModal: (a) => dispatch({ type: 'OPENCREATEPOPUP', task: a }),
+        OPENMODAL: () => dispatch({ type: 'OPENCREATEMODAL' })
 
     }
 

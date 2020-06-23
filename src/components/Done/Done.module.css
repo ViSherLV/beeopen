@@ -1,5 +1,6 @@
 .DoneTask {
   padding: 20px;
+  background: rgba(58, 172, 172, 0.5);
   color: black;
   border: 2px solid #fff;
   border-radius: 5px;
