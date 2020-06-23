@@ -4,7 +4,7 @@ import Button from './../../elements/button/button'
 import { connect } from 'react-redux'
 
 function Task(props) {
-    console.log(props)
+    console.log(`aasa ${JSON.stringify(props)}`)
     function test() {
         console.log(props.id)
     }
@@ -12,10 +12,10 @@ function Task(props) {
         <div className={classes.Task}>
             <div className={classes.TaskLeft}>
                 <h3>{props.task}</h3>
-                {props.review}
+                <p>{props.review}</p>
             </div>
             <div className={classes.TaskRight}>
-                <Button>Редагувати</Button>
+                <Button func={() => props.openModal(props.id)} >Редагувати</Button>
                 <Button id={props.index} number={props.id} func={() => props.onDone(props.id)}>Виконано</Button>
             </div>
         </div>
@@ -29,6 +29,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         onDone: (a) => dispatch({ type: 'DONE', status: "done", id: a }),
+        onEdit: (a) => dispatch({ type: 'EDIT', popup: true }),
+        openModal: (a) => dispatch({ type: 'OPENPOPUP', task: a }),
 
     }
 

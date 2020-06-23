@@ -3,12 +3,17 @@ import { connect } from 'react-redux'
 import classes from "./Todo.module.css"
 import PlanningTask from '../../components/Planing/PlanningTask'
 import Done from '../../components/Done/Done';
+import Popup from '../../components/popup/popup';
+import Createtask from '../../components/CreateTask/Createtask'
 class Todo extends Component {
     render() {
-        console.log(`props ${JSON.stringify(this.props)}`)
+
         return (
             <div className={classes.Todo}>
                 <div className={classes.TodoWrapper}>
+                    {this.props.state.popupContent.isOpenEdit ? <Popup /> : null}
+                    {this.props.state.popupContent.isOpenCreate ? <Createtask /> : null}
+
                     <PlanningTask />
                     <Done />
                 </div>
@@ -19,7 +24,7 @@ class Todo extends Component {
 }
 function mapStateToProps(state) {
     return {
-        counter: state.counter
+        state
     }
 }
 function mapDispatchToProps(dispatch) {

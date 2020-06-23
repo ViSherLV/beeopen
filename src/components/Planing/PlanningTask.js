@@ -13,7 +13,7 @@ function PlanningTask(props) {
         <div className={classes.PlanningTask}>
             <div className={classes.PlanningHeader}>
                 <h2>Список задач</h2>
-                <Button>Додати завдання</Button>
+                <Button func={() => props.openModal()}>Додати завдання</Button>
             </div>
             {
                 props.tasks.map((task, index) => {
@@ -36,7 +36,9 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         onAdd: () => dispatch({ type: 'ADD' }),
-        onSub: () => dispatch({ type: 'SUB' })
+        onSub: () => dispatch({ type: 'SUB' }),
+        createTask: (a) => dispatch({ type: 'CREATE_TASK', status: "done", id: a }),
+        openModal: (a) => dispatch({ type: 'OPENCREATEPOPUP', task: a }),
 
     }
 

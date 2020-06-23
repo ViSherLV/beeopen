@@ -6,6 +6,8 @@
   box-sizing: border-box;
   width: 500px;
   height: 80%;
+  overflow: hidden;
+  overflow-y: auto;
 }
 .PlanningTask h2 {
   color: white;
