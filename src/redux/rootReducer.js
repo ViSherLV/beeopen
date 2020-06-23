@@ -1,4 +1,4 @@
-import { DONE, ONCHANGETASK, ONCHANGEREVIEW, ONSAVE, CREATE, CANCEL, OPENMODAL, OPENCREATEMODAL } from './actions/actionTypes'
+import { DONE, UNDONE, ONCHANGETASK, ONCHANGEREVIEW, ONSAVE, CREATE, CANCEL, OPENMODAL, OPENCREATEMODAL } from './actions/actionTypes'
 const initialState = {
     tasks: [
         {
@@ -30,6 +30,14 @@ export default function rootReducer(state = initialState, action) {
                 tasks: state.tasks.map(
                     (element, i) => i === action.id ? {
                         ...element, status: true
+                    } : element)
+            }
+        case UNDONE:
+            return {
+                ...state,
+                tasks: state.tasks.map(
+                    (element, i) => i === action.id ? {
+                        ...element, status: false
                     } : element)
             }
         case ONCHANGETASK:

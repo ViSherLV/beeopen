@@ -2,7 +2,7 @@ import React from 'react';
 import classes from './Task.module.css'
 import Button from './../../elements/button/button'
 import { connect } from 'react-redux'
-import { doneTask, openChangeModal } from '../../redux/actions/actions'
+import { doneTask, openChangeModal, undoneTask } from '../../redux/actions/actions'
 
 function Task(props) {
     return (
@@ -14,6 +14,7 @@ function Task(props) {
             <div className={classes.TaskRight}>
                 {!props.tasks[props.id].status ? <Button func={() => props.opendModal(props.id)} >Редагувати</Button> : null}
                 {!props.tasks[props.id].status ? <Button id={props.index} number={props.id} func={() => props.onDone(props.id)}>Виконано</Button> : null}
+                {props.tasks[props.id].status ? <Button id={props.index} number={props.id} func={() => props.unDone(props.id)}>Повернути</Button> : null}
             </div>
         </div>
     )
@@ -27,6 +28,7 @@ function mapDispatchToProps(dispatch) {
     return {
         onDone: (id) => dispatch(doneTask(id)),
         opendModal: (task) => dispatch(openChangeModal(task)),
+        unDone: (id) => dispatch(undoneTask(id)),
 
     }
 

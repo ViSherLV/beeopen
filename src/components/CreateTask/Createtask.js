@@ -5,16 +5,14 @@ import { connect } from 'react-redux';
 import { chageTask, changeReview, createTask, cancelCreation } from '../../redux/actions/actions'
 
 function Createtask(props) {
-    const c = chageTask("s");
-    console.log(`console ${JSON.stringify(c)}`)
     return (
         <div className={classes.Modal}>
             <div className={classes.top}>
-                <p>Назва таску</p>
+                <p>Вкажіть час та назву</p>
                 <textarea value={props.tasks.task} onChange={(e) => props.onChageTask(e.target.value)}></textarea>
             </div>
             <div>
-                <p>Опис таску</p>
+                <p>Вкажіть опис</p>
                 <textarea value={props.tasks.review} onChange={(e) => props.onChageReview(e.target.value)}></textarea>
             </div>
             <Button className={classes.Button} func={() => props.onCreate(props.tasks.taskid)}>Додати таск</Button>

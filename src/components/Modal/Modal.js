@@ -10,11 +10,11 @@ function Modal(props) {
         <div className={classes.Modal}>
             <div className={classes.background}></div>
             <div className={classes.top}>
-                <p>Відредагувати назву таску</p>
+                <p>Відредагувати час та назву</p>
                 <textarea value={props.tasks.task} onChange={(variable) => props.onChageTask(variable.target.value)}></textarea>
             </div>
             <div>
-                <p>Відредагувати опис таску</p>
+                <p>Відредагувати опис</p>
                 <textarea value={props.tasks.review} onChange={(variable) => props.onChageReview(variable.target.value)}></textarea>
             </div>
             <Button className={classes.Button} func={(variable) => props.onSave(props.tasks.taskid)}>Зберегти зміни</Button>

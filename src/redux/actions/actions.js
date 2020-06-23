@@ -1,4 +1,4 @@
-import { ONCHANGETASK, ONCHANGEREVIEW, CREATE, CANCEL, ONSAVE, DONE, OPENCREATEMODAL, OPENMODAL } from './actionTypes'
+import { ONCHANGETASK, ONCHANGEREVIEW, CREATE, CANCEL, ONSAVE, DONE, OPENCREATEMODAL, OPENMODAL, UNDONE } from './actionTypes'
 export function chageTask(e) {
     return {
         type: ONCHANGETASK,
@@ -34,6 +34,13 @@ export function doneTask(id) {
     return {
         type: DONE,
         status: "done",
+        id
+    }
+}
+export function undoneTask(id) {
+    return {
+        type: UNDONE,
+        status: "undone",
         id
     }
 }
