@@ -1,4 +1,5 @@
 import { DONE, UNDONE, ONCHANGETASK, ONCHANGEREVIEW, ONSAVE, CREATE, CANCEL, OPENMODAL, OPENCREATEMODAL } from './actions/actionTypes'
+import { act } from 'react-dom/test-utils';
 const initialState = {
     tasks: [
         {
@@ -17,13 +18,32 @@ const initialState = {
         isOpenCreate: false,
         isOpenEdit: false
 
-    }
+    },
+    dispatchStatus: true,
+    isLoading: true
 }
 
 export default function rootReducer(state = initialState, action) {
 
     switch (action.type) {
-
+        case "START":
+            console.log("Laaa")
+            return state
+        case "FETCH_POST":
+            console.log(`FETCH_POST ${action.payload}`);
+            return {
+                ...state, tasks: action.payload, dispatchStatus: false,
+            }
+        case 'HIDE_LOADER':
+            console.log('HIDE')
+            return {
+                ...state, isLoading: false
+            }
+        case 'SHOW_LOADER':
+            console.log("ss")
+            return {
+                ...state, isLoading: true
+            }
         case DONE:
             return {
                 ...state,
